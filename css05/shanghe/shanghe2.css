@@ -1,0 +1,255 @@
+/*
+* @Author: hp
+* @Date:   2016-08-05 17:36:54
+* @Last Modified by:   hp
+* @Last Modified time: 2016-08-06 10:52:03
+*/
+/* css初始化 */
+body,div,p,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: 宋体;
+	color: #666;
+}
+a{
+	text-decoration: none;
+	color: #666;
+}
+input,img{
+	padding: 0;
+	margin: 0;
+	border: 0 none;
+	outline-style: none;
+}
+.clearfix:after{
+	content: " ";
+	height: 0;
+	line-height: 0;
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix{
+	zoom: 1;
+}
+.box{
+	width: 980px;
+	margin: 0 auto;
+}
+/* 头部开始 */
+.header{
+	padding-top: 10px;
+}
+.header .logo{
+	float: left;
+}
+.logo a{
+	width: 179px;
+	height: 39px;
+	display: inline-block;
+	background: url(images/logo.jpg) no-repeat;
+	text-indent: -20000px;
+}
+.header .search{
+	float: right;
+	border: 1px solid #ECECEC;
+}
+.search .search-text{
+	height: 28px;
+	width: 160px;
+	background: #F5F5F5;
+	color: #ACACAC;
+    float: left;
+    padding-left: 6px;
+}
+.search .search-btn{
+	width: 32px;
+    height: 28px;
+	background: url(images/search2.jpg) no-repeat;
+	float: left;
+}
+/* 导航开始 */
+.nav{
+	height: 55px;
+	background: url(images/nav_bg.png);
+	border-top: 1px solid #E1E1E1;
+}
+.nav .box li{
+	list-style: none;
+	height: 55px;
+	background: url(images/nav_bg-line.png) no-repeat right;
+	float: left;
+}
+.nav .box a{
+	padding: 0px 35px;
+	font-weight: bold;
+	display: inline-block;
+	line-height: 55px;
+}
+.nav .box a:hover{
+	color: #BDE745;
+}
+.news{
+	height:29px ;
+	background:#FBFBFB; 
+	border-top:1px solid #EFEFEF ;
+	border-bottom: 1px solid #EFEFEF 
+}
+.news .box .news-text{
+	float: left;
+	line-height: 29px
+}
+.news-text span{
+	font-weight: bold;
+}
+.news .news-link{
+	float: right;
+	line-height: 29px;
+	
+}
+.news .news-link img{
+	vertical-align: middle;
+}
+.product{
+	height: 224px;
+	/* background: red; */
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.product .l-p{
+	width: 310px;
+	height: 224px;
+	border: 1px solid #E4E4E4;
+	float: left;
+}
+ .l-p .l-content{
+	height: 195px;
+	 line-height: 195px; 
+	text-align: center;
+	position: relative;
+}
+.l-p .l-content img{
+	vertical-align: middle;
+}
+.l-p .l-content .a1{
+	display: inline-block;
+	width: 11px;
+	height: 19px;
+	background: url(images/left.png) no-repeat;	 
+	position: absolute;
+	left: 40px;
+	top: 90px;
+
+}
+.l-p .l-content .a2{
+	display: inline-block;
+	width: 11px;
+	height: 19px;
+	background: url(images/right.png) no-repeat;
+	position: absolute;
+	right: 40px;
+	top: 90px;
+}
+ .product .m-p{
+	width: 373px;
+	height: 224px;
+	border: 1px solid #E4E4E4;
+	float: left;
+	margin-left:12px; 
+}
+.m-p .title li{
+	float: left;
+}
+.m-p .more{
+	float: right;
+	font-weight: bold;
+	  margin-right: 10px;
+}
+
+ .product .r-p{
+	width: 265px;
+	height: 224px;
+	border: 1px solid #E4E4E4;
+	float: right;
+}
+.product .title{
+	padding-left: 7px;
+	padding-top: 13px;
+}
+.product .title li{
+	list-style: none;
+	background: url(images/o.jpg) no-repeat left;
+	padding-left: 20px;
+	color: #7AB800;
+	font-weight: bold;
+}
+.m-content {
+	margin-top:10px ;
+}
+.m-content li{
+	list-style: none;
+	height: 27px;
+	margin-left: 23px;
+	margin-right: 18px;
+	border-bottom:1px dashed #DCDCDC ;
+	line-height: 27px
+}
+.m-content li .li-a{
+	color: red;
+	font-weight: bold;
+}
+.r-content{
+     margin-left: 28px;
+     color: #666;
+}
+.r-content h4{
+	margin-top: 10px;
+	border-left:3px solid #98CB00;
+	padding-left:7px ;
+	font-weight: 100;
+	font-size: 11px;
+}
+.r-content p{
+	margin-right: 58px;
+	margin-top: 40px;
+	font-size: 11px;
+}
+.btm {
+	height: 220px;
+	background: #2D2D2D;
+    border-bottom: 1px dashed #414141;
+    margin-top: 20px;    
+}
+.btm dl{
+	float: left;
+	width: 110px;
+	margin-top: 16px;
+}
+.btm dt{
+	height: 34px;
+	color: #C7C7C7;
+	font-size: 12px;
+}
+.btm dd{
+	font-size: 11px;
+	height: 20px;
+}
+.btm .box{
+	position: relative;
+}
+.btm .box img{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.btm2{
+	height: 85px;
+	background:#2D2D2D;
+	 text-align: center;	  
+}
+.btm2 p{
+	height:25px;
+	padding-top: 10px;
+}
