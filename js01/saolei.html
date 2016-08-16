@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+			body{
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			 #sl{
+			 	float: left;
+			 }
+			#sl span{
+				display: inline-block;
+				width: 29px;
+				height: 29px;
+				border: 1px solid #ddd;
+				float: left;
+				background: #7092BE;
+				cursor: pointer;
+				font-size: 14px;
+				text-align: center;
+				line-height: 29px;
+			}
+			 #sl span:hover{
+			 	background: pink;
+			 }
+			 #sl span.boom{
+			 	background-color: #000;
+			 }
+			 #sl span.saf{
+			 	background-color:white;
+			 }
+			 
+        </style>
+    </head>
+    <body>
+    <div id="sl"></div>
+    <script type="text/javascript">
+    	// var arr=[
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	// 			[0,1,0,0,0,0,0,0,1,0],
+    	// 			[0,0,0,0,0,0,0,0,0,1],
+    	// 			[0,0,0,0,1,0,0,0,1,0],
+    	// 			[0,0,0,0,1,0,0,0,0,0],
+    	// 			[0,1,0,0,1,0,0,0,0,0],
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	//         ];
+    	var arr=new Array();
+    	for(var i=0;i<10;i++){
+    		arr[i]=new Array();
+    		for(var j=0;j<10;j++){
+    			arr[i][j]=Math.round(Math.random());
+    		}
+    	}
+    	function draw(){
+    		var html="";
+    	        for(var i=0;i<arr.length;i++){
+    	        	for(var j=0;j<arr[i].length;j++){
+    	        		html+="<span onclick='myClick("+i+","+j+",this)'></span>";
+    	        		
+    	        	}
+    	        	html+="<br>";
+    	        }sl.innerHTML=html;
+    	}
+    	draw();
+    	function myClick(i,j,block){
+    		if(arr[i][j]===1){
+    			block.className+=" boom";
+    			alert("点到雷了，游戏结束");
+    			var flag=prompt("再玩一局","请输入yes或no");
+    			if(flag){
+    				draw();
+    			}
+    		}else{
+    			var count=0;
+    			for(var x=i-1;x<i+1;x++){
+    				for(var y=j-1;y<j+1;y++){
+    					if(x<0||y<0){
+    						continue;
+    					}
+    					if(arr[x]&&arr[x][y]&&arr[x][y]==1){
+    						count++;
+    					}
+    				}
+    			}   			
+    			block.className+=" saf";
+    			block.innerHTML=count?count:"";
+    		}
+    	}
+    </script>
+    </body>
+</html>
