@@ -11,6 +11,8 @@
 			}
 			 #sl{
 			 	float: left;
+                margin-left: 30%;
+                margin-top: 250px;
 			 }
 			#sl span{
 				display: inline-block;
@@ -39,26 +41,27 @@
     <body>
     <div id="sl"></div>
     <script type="text/javascript">
-    	var arr=[
-    				[0,1,0,0,1,0,0,0,1,0],
-    				[0,1,0,0,0,0,0,0,1,0],
-    				[0,0,0,0,0,0,0,0,0,1],
-    				[0,0,0,0,0,1,0,0,1,0],
-    				[0,0,1,0,0,0,0,0,0,0],
-    				[0,0,0,0,1,0,0,0,0,0],
-    				[0,1,0,0,0,0,1,0,1,0],
-    				[0,0,0,0,1,0,0,0,0,0],
-    				[0,0,0,0,1,0,1,0,1,0],
-    				[1,0,0,1,0,0,0,0,1,0],
-    	        ];
+    	// var arr=[
+    	// 			[0,1,0,0,1,0,0,0,1,0],
+    	// 			[0,1,0,0,0,0,0,0,1,0],
+    	// 			[0,0,0,0,0,0,0,0,0,1],
+    	// 			[0,0,0,0,0,1,0,0,1,0],
+    	// 			[0,0,1,0,0,0,0,0,0,0],
+    	// 			[0,0,0,0,1,0,0,0,0,0],
+    	// 			[0,1,0,0,0,0,1,0,1,0],
+    	// 			[0,0,0,0,1,0,0,0,0,0],
+    	// 			[0,0,0,0,1,0,1,0,1,0],
+    	// 			[1,0,0,1,0,0,0,0,1,0],
+    	//         ];
         //随机生成数组   
-    	// var arr=new Array();
-    	// for(var i=0;i<10;i++){
-    	// 	arr[i]=new Array();
-    	// 	for(var j=0;j<10;j++){
-    	// 		arr[i][j]=Math.round(Math.random());
-    	// 	}
-    	// }
+    	var arr=new Array();
+    	for(var i=0;i<10;i++){
+    		arr[i]=new Array();
+    		for(var j=0;j<10;j++){
+    			arr[i][j]=Math.floor(Math.random()*10);
+    		}
+    	}
+        //画棋盘
     	function draw(){
     		var html="";
     	        for(var i=0;i<arr.length;i++){
@@ -70,6 +73,7 @@
     	        }sl.innerHTML=html;
     	}
     	draw();
+        //开始扫雷
     	function myClick(i,j,block){
     		if(arr[i][j]===1){
     			block.className+=" boom";
@@ -79,20 +83,20 @@
     				draw();
     			}
     		}else{
-    			var count=0;
-    			for(var x=i-1;x<i+1;x++){
-    				for(var y=j-1;y<j+1;y++){
-    					if(x<0||y<0){
-    						continue;
-    					}
-    					if(arr[x]&&arr[x][y]&&arr[x][y]==1){
-    						count++;
-    					}
-    				}
-    			}   			
-    			block.className+=" saf";
-    			block.innerHTML=count?count:"";
-    		}
+                 var count=0;
+                 for(var x=i-1;x<=i+1;x++){
+                    for(var y=j-1;y<=j+1;y++){
+                        if( x<0||y<0||x>=arr.length||y>=arr[j].length){
+                            continue;
+                        } 
+                         if(arr[x]&&arr[x][y]&&arr[x][y]===1){
+                             count++;
+                         }                          
+                    }
+                 }
+                block.className+=" saf";
+                block.innerHTML=count?count:"";
+            }    			
     	}
     </script>
     </body>
