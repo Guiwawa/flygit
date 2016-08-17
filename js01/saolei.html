@@ -67,8 +67,7 @@
           }
            
         //画棋盘
-    	function draw(){ 
-            var arr=array();
+    	function draw(arr){ 
     		var html="";
     	    for(var i=0;i<arr.length;i++){
     	        	for(var j=0;j<arr[i].length;j++){
@@ -77,17 +76,17 @@
     	        	}
     	        	html+="<br>";
     	    }sl.innerHTML=html;
-    	} 
-        draw();
+    	}  
+        var arr=array();
+        draw(arr);
         //开始扫雷
     	function myClick(i,j,block){
-             var arr=array();
     		if(arr[i][j]===1){
     			block.className+=" boom";
     			alert("点到雷了，游戏结束");
-    			var flag=prompt("再玩一局","请输入yes或no");
-    			if(flag){
-    				draw();
+    			var flag=String(prompt("再玩一局","请输入yes或no"));
+    			if(flag==="yes"){
+    				draw(arr2);
     			}
     		}else{
                  var count=0;
