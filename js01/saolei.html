@@ -53,28 +53,35 @@
     	// 			[0,0,0,0,1,0,1,0,1,0],
     	// 			[1,0,0,1,0,0,0,0,1,0],
     	//         ];
-        //随机生成数组   
-    	var arr=new Array();
-    	for(var i=0;i<10;i++){
-    		arr[i]=new Array();
-    		for(var j=0;j<10;j++){
-    			arr[i][j]=Math.floor(Math.random()*10);
-    		}
-    	}
+        
+          //随机生成数组
+          function array(){
+             var arr=new Array();
+            for(var i=0;i<10;i++){
+                arr[i]=new Array();
+                for(var j=0;j<10;j++){
+                    arr[i][j]=Math.floor(Math.random()*10);
+                }
+            }
+            return arr;
+          }
+           
         //画棋盘
-    	function draw(){
+    	function draw(){ 
+            var arr=array();
     		var html="";
-    	        for(var i=0;i<arr.length;i++){
+    	    for(var i=0;i<arr.length;i++){
     	        	for(var j=0;j<arr[i].length;j++){
     	        		html+="<span onclick='myClick("+i+","+j+",this)'></span>";
     	        		
     	        	}
     	        	html+="<br>";
-    	        }sl.innerHTML=html;
-    	}
-    	draw();
+    	    }sl.innerHTML=html;
+    	} 
+        draw();
         //开始扫雷
     	function myClick(i,j,block){
+             var arr=array();
     		if(arr[i][j]===1){
     			block.className+=" boom";
     			alert("点到雷了，游戏结束");
