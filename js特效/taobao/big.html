@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>哈哈</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+
+        .mask {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            cursor: move;
+            display: none;
+        }
+
+        .small {
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="small"><!--小层-->
+        <img src="images/small.png" width="350" alt=""/>
+        <div class="mask"></div><!--遮挡层-->
+    </div>
+    <div class="big"><!--大层-->
+        <img src="images/big.jpg" width="800" alt=""/><!--大图-->
+    </div>
+</div>
+<script>
+    //获取节点
+    var box=document.getElementById("box");
+    var small=box.children[0];//小层
+    var mask=small.children[1];//遮挡层
+    var big=box.children[1];//大层
+    var bigImg=big.children[0];//大图
+    //鼠标经过小层，显示遮挡层和大层
+    small.onmouseover=function(){
+       mask.style.display="block";
+        big.style.display="block";
+    };
+    //鼠标离开，遮挡层和大层不显示
+    small.onmouseout=function(){
+        mask.style.display="none";
+        big.style.display="none";
+    };
+    //为小层注册鼠标移动事件，让小层跟着鼠标移动
+    small.onmousemove=function(e){
+       //获取鼠标的横纵坐标
+        var X= e.clientX-mask.offsetWidth/2;
+        var Y= e.clientY-mask.offsetHeight/2;
+        var Left=X-100;
+        var Top=Y-100;
+       Left= Left<0?0:Left;
+       Top= Top<0?0:Top;
+        Left=Left>small.offsetWidth-mask.offsetWidth?small.offsetWidth-mask.offsetWidth:Left;
+        Top=Top>small.offsetHeight-mask.offsetHeight?small.offsetHeight-mask.offsetHeight:Top;
+        mask.style.left=Left+"px";
+        mask.style.top=Top+"px";
+         //大图片的移动
+        //计算大图片的移动距离：遮挡层的移动距离/大图片的移动距离=遮挡层的最大移动距离/大图片的最大移动距离
+        //大图片的最大移动距离为bigImg.offsetWidth-big.offsetWidth;
+        var bigMoveLeft= (bigImg.offsetWidth-big.offsetWidth)/(small.offsetWidth-mask.offsetWidth)*Left;
+        var  bigMoveTop= (bigImg.offsetWidth-big.offsetWidth)/(small.offsetWidth-mask.offsetWidth)*Top;
+        bigImg.style.marginLeft=-bigMoveLeft+"px";
+        bigImg.style.marginTop=-bigMoveTop+"px";
+    };
+
+</script>
+</body>
+</html>
