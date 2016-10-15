@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen li {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            float: left;
+        }
+
+        .screen ul {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 3000px;
+        }
+
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .all ol li.current {
+            background: yellow;
+        }
+
+        #arr {
+            display: none;
+        }
+
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="all" id='box'>
+    <div class="screen">
+        <ul>
+            <li><img src="images/1.jpg" width="500" height="200"/></li>
+            <li><img src="images/2.jpg" width="500" height="200"/></li>
+            <li><img src="images/3.jpg" width="500" height="200"/></li>
+            <li><img src="images/4.jpg" width="500" height="200"/></li>
+            <li><img src="images/5.jpg" width="500" height="200"/></li>
+        </ul>
+        <ol>
+        </ol>
+    </div>
+    <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+</div>
+<script>
+    //根据id获取元素
+    function my$(id) {
+        return document.getElementById(id);
+    }
+    //动画的函数
+    function animate(element,target) {
+        clearInterval(element.timeId);
+        //计时器
+        element.timeId=setInterval(function () {
+            //获取层的目标位置
+            //var target=400;
+            //获取层的当前位置
+            var current=element.offsetLeft;
+            //层每次移动多少像素---每次移动的步数
+            var step=9;
+            step=current<target?step:-step;
+            current=current+step;
+            //如果当前位置小于了每次移动的步数,那么就证明马上就到了目标位置
+            //此时再移动一次就超过了目标的位置,所以,直接把计时器清空就可以了,然后设置当前的位置就是目标位置,否则就继续移动
+            if(Math.abs(target-current)<Math.abs(step)){
+                clearInterval(element.timeId);
+                element.style.left=target+"px";
+            }else{
+                element.style.left=current+"px";
+            }
+        },5);
+    }
+
+    //获取所需元素
+    var box =my$("box");
+    var screen=box.children[0];
+    var ul=screen.children[0];
+    var ol=screen.children[1];
+    var lis=ul.children;
+    console.log(lis.length);
+    var arr=box.children[1];
+    var left=my$("left");
+    var right =my$("right");
+    //计算图片的宽度
+    var imgWidth=screen.offsetWidth;
+    //为ol动态添加li
+    var pic=0;//目的是保存当前ol中li的索引，将来点击左右按钮时移动的图片的索引与下面li 中的索引保持一致
+    //根据ul中的li的个数动态的创建ol中的li
+    for(var i=0; i<lis.length;i++){
+        //动态创建li
+        var li=document.createElement("li");
+        li.index=i;//为li动态添加属性
+        li.innerHTML=i+1;
+        ol.appendChild(li);
+        //为li注册鼠标经过事件
+        li.onmouseover=function(){
+           //鼠标移动到当前的li背景颜色发生改变，排他思想
+            for(var j=0;j<ol.children.length;j++){
+                ol.children[j].className="";
+            }
+            this.className="current";
+            pic=this.index;
+            //设置图片移动
+            var target=-this.index*imgWidth;
+            animate(ul,target);
+        };
+    }
+    ol.children[0].className="current";
+    //为了做无缝连接，要在ul所有的li后加入第一个li;
+     ul.appendChild(lis[0].cloneNode(true));
+     /*  console.log("ol===="+ol.children.length);//5
+     console.log("tupian===="+lis.length);//6*/
+     //鼠标进入box之前加计时器
+     var timeId=null;
+     timeId=setInterval(rightHandle,1000);
+     //鼠标进入box层显示左右按钮，鼠标离开隐藏按钮
+     box.onmouseover=function(){
+     arr.style.display="block";
+     clearInterval(timeId);
+     };
+     box.onmouseout=function(){
+     arr.style.display="none";
+     timeId=setInterval(rightHandle,1000);
+     };
+     //点击右侧按钮注册事件
+     right.onclick=rightHandle;
+     function rightHandle(){
+     if(pic==lis.length-1){
+     pic=0;
+     ul.style.left=0+"px";
+     }
+     pic++;
+     var target=-pic*imgWidth;
+     animate(ul,target);
+     //当图片是第六张时下面的索引显示为1
+     if(pic==lis.length-1){
+     ol.children[0].className="current";
+     ol.children[ol.children.length-1].className="";
+     }else{
+         //排他
+         for(var i=0;i<ol.children.length;i++){
+             ol.children[i].className="";
+         }
+            ol.children[pic].className="current";
+         }
+     };
+    //点击左侧的按钮，图片移动
+    left.onclick=function(){
+        if(pic==0){
+            pic=lis.length-1;
+            ul.style.left=-pic*imgWidth+"px";
+        }
+        pic--;
+        var target=-pic*imgWidth;
+        animate(ul,target);
+        for(var i=0;i<ol.children.length;i++){
+            ol.children[i].className="";
+        }
+        ol.children[pic].className="current";
+    };
+</script>
+</body>
+</html>
