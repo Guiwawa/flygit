@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        ul {
+            list-style: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        div {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        div li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+
+        div ul {
+            width: 1300px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="common.js"></script>
+<script>
+    //首先页面加载完毕后显示图片
+    var lis=my$("box").children[0].children;
+    for(var i=0;i<lis.length;i++){
+        lis[i].style.backgroundImage="url(images/"+(i+1)+".jpg)";
+        //为每个li注册鼠标经过和鼠标离开事件
+        lis[i].onmouseover=mouseoverHandle;
+        lis[i].onmouseout=mouseoutHandle;
+    }
+    function mouseoverHandle(){
+        //每个li的宽度变为100，当前的宽度变为800
+        for(var i=0;i<lis.length;i++){
+            animate(lis[i],{"width":100});
+        }
+        animate(this,{"width":800});
+    }
+    function mouseoutHandle(){
+        //所有的li变为240
+        for(var i=0;i<lis.length;i++){
+            animate(lis[i],{"width":240});
+        }
+    }
+</script>
+</body>
+</html>
