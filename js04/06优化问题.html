@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="创建" id="btn"/>
+<div id="box"></div>
+<script>
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick=function(){
+        var star=+new Date();
+        var arr=[];
+        for(var i=0;i<10000;i++){
+             var ul=document.createElement("ul");
+            box.appendChild(ul);
+            var li=document.createElement("li");
+            ul.appendChild(li);
+            li.innerHTML="aaaaa";
+        }
+        var end=+new Date();
+        console.log(end-star);
+    };
+</script>
+</body>
+</html>

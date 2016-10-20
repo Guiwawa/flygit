@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding :0;
+        }
+        #dv1{
+            width: 300px;
+            height: 200px;
+            border:1px solid red;
+            position: relative;
+            left:50px;
+            /*margin-left: 100px;*/
+            /*padding-left:100px;*/
+        }
+        #dv2{
+            width: 200px;
+            height: 100px;
+            border:1px solid blue;
+            position: absolute;
+            left:50px;
+           /* margin-left:100px;*/
+            /*padding-left:100px;*/
+        }
+    </style>
+</head>
+<body>
+<div id="dv1">
+    <div id="dv2"></div>
+</div>
+<script>
+    var dvObj=document.getElementById("dv2");
+    console.log(dvObj.offsetLeft);
+</script>
+</body>
+</html>

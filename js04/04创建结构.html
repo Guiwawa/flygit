@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="创建" id="btn" />
+<div id="box"></div>
+<script>
+    //动态创建结构
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick=function(){
+        //document.write("<ul><li>aaaaaa</li></ul>");
+        box.innerHTML+="<ul><li>aaaaaa</li></ul>";
+    }
+</script>
+</body>
+</html>

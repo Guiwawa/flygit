@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        fieldset, img, input, button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            outline-style: none;
+        }
+
+        ul, ol {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #box {
+            width: 405px;
+            margin: 200px auto;
+            position: relative;
+        }
+
+        #txtSearch {
+            float: left;
+            width: 300px;
+            height: 32px;
+            padding-left: 4px;
+            border: 1px solid #b6b6b6;
+            border-right: 0;
+        }
+
+        #btnSearch {
+            float: left;
+            width: 100px;
+            height: 34px;
+            font: 400 14px/34px "microsoft yahei";
+            color: white;
+            background: #3385ff;
+            cursor: pointer;
+        }
+
+        #btnSearch:hover {
+            background: #317ef3;
+        }
+
+        #pop {
+            width: 303px;
+            border: 1px solid #ccc;
+            padding: 0px;
+            position: absolute;
+            top: 34px;
+        }
+
+        #pop ul li {
+            padding-left: 5px;
+        }
+
+        #pop ul li:hover {
+            background-color: #CCC;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="txtSearch">
+    <input type="button" value="百度一下" id="btnSearch">
+</div>
+<script>
+    //当键盘弹起时，找到相匹配的数据
+    var arrs=["aa","abcsdf","12434","hufdig","agkf"];
+    var text=document.getElementById("txtSearch");
+    var box=document.getElementById("box");
+    text.onkeyup=function(){
+        var newArr=[];
+         var val = this.value;
+        for(var i=0;i<arrs.length;i++){
+            var arr=arrs[i];
+            //判断当前数据是否以val开头
+            if(arr.indexOf(val)===0){
+                newArr.push(arr);
+            }
+        }
+        //1 避免重复生成popdiv
+        var div=document.getElementById("pop");
+        if(div){
+            box.removeChild(div);
+        }
+        //2  当没有重叠时及newArr中没有东西时，不需要创建div
+        if(newArr.length===0){
+            return ;
+        }
+        //3 当首字母为空时不需要创建div
+        if(val===""){
+            return ;
+        }
+         //在box里生成popdiv
+        var popdiv=document.createElement("div");
+        popdiv.id="pop";
+        box.appendChild(popdiv);
+        //创建ul,追加到popdiv里面
+        var ul=document.createElement("ul");
+        popdiv.appendChild(ul);
+        for(var i=0;i<newArr.length;i++){
+            var li=document.createElement("li");
+            ul.appendChild(li);
+            li.innerHTML=newArr[i];
+        }
+    }
+
+</script>
+</body>
+</html>

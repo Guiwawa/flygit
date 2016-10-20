@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 1000px;
+            height:1000px;
+            border: 1px solid red;
+        }
+
+    </style>
+    <script>
+        //$永远都是24k纯帅的十八岁的杨哥$
+    </script>
+</head>
+<body>
+<img src="images/bird.png" id="im"/>
+<div id="box"></div>
+<script>
+    var box=document.getElementById("box")
+    box.onmousemove=function (e) {
+
+        e=e?e:window.event;
+//        e=e||window.event;
+        var imgObj=document.getElementById("im");
+        imgObj.style.position="absolute";
+        imgObj.style.left=e.clientX+"px";//pageX--包含可视区域的横坐标和隐藏区域
+        imgObj.style.top=e.clientY+"px";//pageY---包含可视区域的纵坐标和隐藏区域
+
+        //如何解决ie8中和谷歌中同时满足这种现象
+        //兼容的写法了
+
+
+        /*
+        * 1.如何获取某个事件处理的函数中的参数:arguments.length
+        * arguments---是一个对象,可以看成是一个数组
+        * 2.获取可视区域的横纵坐标:
+        * 事件参数.clientX和事件参数.clientY
+        * 事件参数:就是某个事件处理的函数中传入的参数:
+        * 事件参数可以使用arguments[0]来代替
+        * IE8中事件处理的函数中没有参数,如何在IE8浏览器中用到这个事件参数?
+        * 答:window.event
+        * 解决事件参数兼容问题:
+        * e=e?e:window.event;或者e=e||window.event;
+        * 图片能够跟着鼠标移动是设置了图片的left和top分别等于clientX和clientY
+        * clientX和clientY是获取的可视区域的横纵坐标
+        * 如果页面有滚动条了,此时卷出去的区域应该用pageX和pageY
+        *
+        *
+        *
+        *
+        *
+        *
+        *
+        * */
+
+
+    };
+</script>
+
+
+<script>
+
+//    document.onmousemove=function () {
+////        var imgObj=document.getElementById("im");
+////        imgObj.style.position="absolute";
+////        imgObj.style.left=arguments[0].clientX+"px";
+////        imgObj.style.top=arguments[0].clientY+"px";
+//    };
+
+</script>
+
+</body>
+</html>

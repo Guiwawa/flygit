@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="改变位置" id="btn"/>
+<div id="box"></div>
+<script>
+    //点击按钮是盒子往下移动
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick=function(){
+        box.style.top="200px";
+        box.style.left="200px";
+    }
+</script>
+</body>
+</html>
