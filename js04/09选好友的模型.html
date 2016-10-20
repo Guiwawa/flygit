@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select{
+            width: 100px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<select name="" id="slt1" multiple="multiple">
+    <option value="">西施</option>
+    <option value="">西施</option>
+    <option value="">西施</option>
+    <option value="">西施</option>
+    <option value="">西施</option>
+</select>
+<input type="button" id="btn1" value="&gt;&gt;"/>
+<input type="button" id="btn2" value="&lt;&lt;"/>
+<input type="button" id="btn3" value="&gt;"/>
+<input type="button" id="btn4" value="&lt;"/>
+<select name="" id="slt2" multiple="multiple"></select>
+ <script>
+    //封装  获取id的函数
+    function $(id){
+        return document.getElementById(id);
+    }
+    var slt1=$("slt1");
+    var slt2=$("slt2");
+    //点击btn1 使slt1中的内容全过去slt2
+    //console.log($("btn1"));
+    $("btn1").onclick=function(){
+         slt2.innerHTML +=slt1.innerHTML;
+        slt1.innerHTML="";
+    };
+     //点击btn2使slt2中的内容全部过去slt1
+     $("btn2").onclick=function(){
+          slt1.innerHTML +=slt2.innerHTML;
+         slt2.innerHTML="";
+     };
+
+    /* //封装 全过去的函数
+     function move(btn,slt1,slt2){
+         $(btn).onclick=function(){
+             var options=slt1.children;
+             for(var i=0;i<options.length;i++){
+                 var option=options[i];
+                 slt2.appendChild(option);
+                 i--;
+             }
+         };
+     }
+    //调用函数
+    move("btn1",slt1,slt2);
+    move("btn2",slt2,slt1);*/
+     //点击btn3 ,使slt1中选中的放到slt2中
+     $("btn3").onclick=function(){
+         move(slt1,slt2,false);
+     };
+    //点击btn4 ,使slt2中选中的放到slt1中
+    $("btn4").onclick=function(){
+         move(slt2,slt1,false);
+    };
+     //封装   isMoveall表示是否全部移动，true表示全部，false表示移动选中的
+     function move(sort,dest,isMoveall){
+         var options = sort.children;
+         for(var i=0;i<options.length;i++){
+             var option = options[i];
+             if(isMoveall||option.selected){
+                 dest.appendChild(option);
+                 i--;
+             }
+         }
+     }
+ </script>
+</body>
+</html>

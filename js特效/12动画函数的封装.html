@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #dv{
+            width: 300px;
+            height: 200px;
+            background-color: greenyellow;
+            margin-top:50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="移动到400像素" id="btn1"/>
+<input type="button" value="移动到800像素" id="btn2"/>
+<div id="dv"></div>
+<script>
+    //点击按钮，层开始移动，移动到400像素处停止
+    //获取按钮
+    var btn1=document.getElementById("btn1");
+    //点击按钮事件
+    btn1.onclick=function(){
+        //获取层
+        var dvObj=document.getElementById("dv");
+        var current=dvObj.offsetLeft;
+        var target=400;
+        var step=5;
+        current=current+step;
+        //计时器来控制层的移动
+       var timeId=setInterval(function(){
+           if(current<target){
+               dvObj.style.left=current+"px";
+           }else{
+               dvObj.style.left=target+"px";
+               clearInterval(timeId);
+           }
+        },50);
+    }
+</script>
+</body>
+</html>

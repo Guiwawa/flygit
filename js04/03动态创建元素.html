@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="father">
+    <div id="son"></div>
+</div>
+<div id="demo"></div>
+<input type="button" value="插入" id="btn"/>
+<script>
+    //克隆节点
+    var demo=document.getElementById("demo");
+    var btn=document.getElementById("btn");
+    var father=document.getElementById("father");
+    var son=document.getElementById("son");
+    var clone=demo.cloneNode(true);
+    btn.onclick=function(){
+        father.removeChild(son);
+    };
+</script>
+</body>
+</html>

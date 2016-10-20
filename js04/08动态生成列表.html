@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .cls {
+            list-style: none;
+            width: 150px;
+            /*动态生成的结构高度要靠内部内容撑起来*/
+            /*height: 54px;*/
+            margin: 0;
+            padding: 0;
+            background-color: #0099cc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="创建" id="btn"/>
+
+<div id="box"></div>
+<script>
+    //点击按钮在box中根据数据动态生成列表
+    var bg=null;
+    var phones=["小米","华为","中兴","苹果","三星","魅族","苹果","三星","魅族"];
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick=function(){
+        var ul=document.getElementById("u");
+        if(ul){
+            return ;
+        }
+        var ul =document.createElement("ul");
+        ul.className ="cls";
+        ul.id="u";
+        box.appendChild(ul);
+        for(var i=0;i<phones.length;i++){
+            var phone=phones[i];
+            var li=document.createElement("li");
+            li.innerHTML=phone;
+            ul.appendChild(li);
+            if(i%2===0){
+                li.style.backgroundColor="#c0c0c0";
+            }else{
+                li.style.backgroundColor="#d0d0d0";
+            }
+            li.onmouseover=function(){
+                bg=this.style.backgroundColor;
+                this.style.backgroundColor="#f0f0f0";
+            }
+            li.onmouseout=function(){
+                this.style.backgroundColor=bg;
+            }
+        }
+    }
+</script>
+</body>
+</html>

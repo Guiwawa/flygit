@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  /*  console.log(isNaN(123));//false
+    console.log(null==undefined);//true
+    console.log(null===undefined);//false
+    console.log( NaN==NaN);//false*/
+//    console.log(true&&"abc");
+    /*function aa(){
+        console.log("aaa");
+        return function(){
+            console.log("bbb");
+        }
+    }
+    console.log(aa);
+    console.log(aa());
+   console.log(aa()());*/
+   /* function f(){
+        return f;
+    }
+    console.log(new f() instanceof f);*/
+    //1.请编写一个学生的自定义构造函数,在创建该学生对象的同时传入姓名，性别，年龄，并调用学生的打招呼方法,介绍自己的姓名，性别及年龄
+   /* function Student(name,age,sex){
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        this.sayHi=function(){
+            console.log("我叫"+this.name+"年龄"+this.age);
+        }
+    }
+    var stu=new Student("小飞",18,"女");
+    stu.sayHi();*/
+//  请编写程序,实现去除该数组的重复元素，并产生一个新数组
+  /*  var arr=[10,0,20,30,0,40,20,50];
+  var newarr=[];
+    for(var i=0;i<arr.length;i++){
+        if(newarr.indexOf(arr[i])==-1){
+            newarr.push(arr[i]);
+        }
+    }
+    console.log(newarr);*/
+    //3判断一个字符串中出现次数最多的字符，统计这个次数
+    /*var str="adjfshdkgaaassddddddsfjggl";
+    var json={};
+    for(var i=0;i<str.length;i++){
+        if(json[str.charAt(i)]){
+            json[str.charAt(i)]++;
+        }else{
+            json[str.charAt(i)]=1;
+        }
+    }
+    var Max=0;
+    var st="";
+    for(var key in json ){
+        if(json[key]>Max){
+            Max=json[key];
+            st=key;
+        }
+    }
+    console.log("重复次数最多的是"+st+"   "+Max+"次");*/
+  //3.书写一个函数，随机生成十六进制颜色值
+    /*function randomColor(){
+        var arrHex=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+        var strHex="#";
+        var index;
+        for(var i=0;i<6;i++){
+            index=Math.round(Math.random()*15);
+            strHex+=arrHex[index];
+        }
+        return strHex;
+    }
+  console.log(randomColor());*/
+    //书写函数，随机生成十六进制颜色值
+    function randomColor(){
+        var arrHex=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+        var str="#";
+        var index;
+        for(var i=0;i<6;i++){
+            index=parseInt(Math.random()*15);
+            str+=arrHex[index];
+        }
+        return str;
+    }
+  console.log(randomColor());
+</script>
+</body>
+</html>

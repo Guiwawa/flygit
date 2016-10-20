@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #dv{
+            width: 300px;
+            height: 200px;
+            background-color: yellowgreen;
+            margin-top:50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点击移动到400像素" id="btn1"/>
+<input type="button" value="点击移动到800像素" id="btn2"/>
+<div id="dv"></div>
+<script>
+    //点击按钮层开始移动
+    //给按钮注册点击事件
+    var btn1=document.getElementById("btn1");
+    btn1.onclick=function(){
+        //获取层，得到层的当前的offsetLeft，
+        var dvObj=document.getElementById("dv");
+        animate(dvObj,400);
+    };
+    var btn2=document.getElementById("btn2");
+    btn2.onclick=function(){
+        //获取层，得到层的当前的offsetLeft，
+        var dvObj=document.getElementById("dv");
+        animate(dvObj,800);
+    };
+   function animate(element,target){
+       var timeId=setInterval(function(){
+           //层移动时的位置=当前的位置left+每次移动多少像素step
+           //设置dvObj的left每次增加固定的步数
+           var left=element.offsetLeft;
+           var step=5;
+           var Left=left+step;
+           if(Left>target){
+               element.style.left=target+"px";
+               clearInterval(timeId);
+           }else{
+               element.style.left=Left+"px";
+           }
+       },50);
+   }
+</script>
+</body>
+</html>

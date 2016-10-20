@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="创建" id="btn"/>
+<div id="box"></div>
+<script>
+    //点击按钮在box里创建文本框
+    var btn=document.getElementById("btn");
+    var box=document.getElementById("box");
+    btn.onclick=function(){
+        var input=document.getElementById("t");
+        if(input){
+            return;
+        }
+            input=document.createElement("input");
+            input.type="text";
+            input.id="t";
+        box.appendChild(input);
+    };
+</script>
+</body>
+</html>

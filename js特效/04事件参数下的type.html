@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="dv"></div>
+<script>
+    //页面中有一个层，有三个事件:鼠标进入，鼠标点击，鼠标离开
+    function my$(id){
+        return document.getElementById(id);
+    }
+    my$("dv").onmouseover=f1;
+    my$("dv").onclick=f1;
+    my$("dv").onmouseout=f1;
+    function f1(e){
+        switch (e.type){
+            case "mouseover":this.style.backgroundColor="yellow";break;
+            case "click":this.style.backgroundColor="blue";break;
+            case "mouseout":this.style.backgroundColor="green";break;
+        }
+    }
+</script>
+</body>
+</html>
